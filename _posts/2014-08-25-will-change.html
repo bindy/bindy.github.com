@@ -8,4 +8,35 @@ title: life will change
 <p>哈，今天路考终于过了，还不错，so，写写日志</p>
 <p>这次讲讲看到的一个新的属性 will change</p>
 
+<h3>GPU 加速</h3>
+<p>可能我们都听说过CSS3 GPU加速，这个具体是怎么回事呢</p>
+<ul>
+  <li><p>1.可以用一个升降梯来形容它：使用了加速，就相当于打开了电梯，往里面扔东西，提高物品的传输速度</p</li>
+  <li><p>2.对于某些浏览器，opacity可以激发GPU加速，还有就是我们认识的css transforms 3D了</p></li>
+</ul>
+
+<h3>GPU Hack</h3>
+<pre><code>1.transform:translate3d(0,0,0)</code></pre>
+<p>使用这个hack可以强制开启加速，但是这种方法是有问题的，它会占用系统的内存，尤其是对于资源有限的移动设备，如果你能保证它使用到了就没啥问题</p>
+
+<h3>will-change</h3>
+<p>这个属性会在需要的时候及时做好准备工作，意思就是给了浏览器一个提示：某个盒子模型将会进行3D操作，到了3D变化的时候可以进行及时更新渲染</p>
+<pre><code>will-change:transform</code></pre>
+
+<h3>注意事项</h3>
+<p>will-change 固然好用，但是也有一些值得注意的点</p>
+<ul>
+  <li>1.不要什么标签都用</li>
+  <li>2.要给予浏览器足够的时间去工作</li>
+  <li>3.在3D转化完成后去掉该属性</li>
+  <li>4.这个属性很新，浏览器支持率目前不是很乐观</li>
+</ul>
+<h3>支持的几个属性</h3>
+<pre><code>
+will-change: transform;
+will-change: opacity;
+will-change: top, left, bottom, right;
+</code></pre>
+
+<p>参考文章<a href="http://dev.opera.com/articles/css-will-change-property/">http://dev.opera.com/articles/css-will-change-property/</a></p>
 <p>{{ page.date | date_to_string }}</p>
